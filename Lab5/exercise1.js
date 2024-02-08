@@ -6,3 +6,4 @@ console.log(
     age + fav_num / day_of_birth * month_of_birth,
     (age + fav_num) / day_of_birth * month_of_birth
     )
+    
