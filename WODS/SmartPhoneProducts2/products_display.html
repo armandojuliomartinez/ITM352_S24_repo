@@ -39,14 +39,7 @@
             </div>
         </aside>
 
-        <main>
-            <section class="item" onmouseover="this.className='item rotate'; spins_span.innerHTML = spins++;" onclick="this.className='item'; hits_span.innerHTML = hits++;">
-                <h2><script>document.write(name1)</script></h2>
-                <p>$<script>document.write(price1)</script></p>.
-                <img id="image1_id"><script>image1_id.src = image1;</script>.
-            </section>
-
-           
+        <main>           
             <script>
                 for (let i=1; eval('typeof name'+i) !='undefined'; i++ ) {
                      document.write(`<section class="item" onmouseover="this.className='item rotate'; spins_span.innerHTML = spins++;" onclick="this.className='item'; hits_span.innerHTML = hits++;">
