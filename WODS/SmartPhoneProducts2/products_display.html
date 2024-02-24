@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Smart Phone Store</title>
+    <p style="text-align: center; font-weight: bold;">
+        Hits:<span id="hits_span">0</span>
+        Spins:<span id="spins_span">0</span>
+    </p>
+        
+    <link href="https://fonts.googleapis.com/css?family=Cherry+Swash|Raleway" rel="stylesheet">
+
+    <link id="xxx" href="products-style.css" rel="stylesheet">
+
+<style id="localStyle"></style>
+    <script src="products_data.js"></script>
+    <script> 
+        const store_name= "Armando Martinez"
+        
+    </script>
+</head>
+
+<body onload="hits_span.innerHTML = hits; spins_span.innerHTML = spins;">
+
+    <header>
+        <h1>
+            <script>
+                document.write(store_name + "'s Used Smart Phone Store")
+            </script>
+        </h1>
+    </header>
+    <div>
+        <aside>
+            <div style="font-size:4rem;text-align:center;font-weight: bold;font-style: italic; color: white">
+                We sell from
+                around the globe!
+                <input id='speedSlider' type='range' min="0.1" max="5" step="0.1" style="direction: rtl;" onchange="localStyle.innerHTML = '.rotate img {animation-duration: ' + speedSlider.value + 's;}';">
+            </div>
+        </aside>
+
+        <main>
+            <section class="item" onmouseover="this.className='item rotate'; spins_span.innerHTML = spins++;" onclick="this.className='item'; hits_span.innerHTML = hits++;">
+                <h2><script>document.write(name1)</script></h2>
+                <p>$<script>document.write(price1)</script></p>.
+                <img id="image1_id"><script>image1_id.src = image1;</script>.
+            </section>
+
+           
+            <script>
+                for (let i=1; eval('typeof name'+i) !='undefined'; i++ ) {
+                     document.write(`<section class="item" onmouseover="this.className='item rotate'; spins_span.innerHTML = spins++;" onclick="this.className='item'; hits_span.innerHTML = hits++;">
+                <h2>
+                    ${eval('name' +i)}
+                </h2>
+                <p>$
+                    ${eval('price'+i)}
+                </p>.
+                <img src=${eval("image"+i)}>
+            </section>`)
+                }
+            </script>
+<script>
+    let hits = 0;
+    let spins = 1;
+    hits_span.innerHTML = hits; 
+    spins_span.innerHTML = spins;
+</script>
+        </main>
+    </div>
+    <footer>
+        <h1>
+            <script>
+                document.write(`Your One Stop For Used Phones - ${store_name}s`);
+            </script>
+        </h1>
+    </footer>
+</body>
+
+</html>
