@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+</head>
+
+<body>
+    <form name='quantity_form' action="" method="get" onsubmit="return displayPurchase();">
+        Quantity desired: <input name="quantity_textbox1" type="text" onkeyup="checkQuantityTextbox(this);">
+        <span id='quantity_textbox1_message'>Enter a quantity</span>
+        <br>
+        <input type="submit" value="Purchase">
+    </form>
+ 
+    <div id="purchase_result"></div>
+
+    <script>
+        function checkQuantityTextbox(the_textbox) {
+            document.getElementById(the_textbox.id + '_message').innerHTML = isNonNegInt(the_textbox.value, true).join(',');
+        }
+
+        function isNonNegInt(q, return_error = false) {
+            let errors = []; // assume no errors at first
+            if (Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
+            else {
+                if (q < 0) errors.push('Negative value!'); // Check if it is non-negative
+                if (parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
+            }
+            return (return_error) ? errors : (errors.length === 0);
+        }
+
+        function displayPurchase() {
+            let quantity = document.querySelector('input[name="quantity_textbox1"]').value;
+            let resultDiv = document.getElementById('purchase_result');
+
+            if (isNonNegInt(quantity)) {
+                window.location.href= `display_Purchase3b.html?quantity_textbox1=${quantity}`;
+            } else {
+                alert('Invalid quantity. Try entering the quantity again.');
+            }
+
+            return false; // Prevent form submission and page reload
+        }
+    </script>
+</body>
+
+</html>

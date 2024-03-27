@@ -22,7 +22,9 @@ function getDayOfWeek(day, month, year) {
     } else {
         step1 = year;
     };
+    
     let step2= (parseInt(step1/4)+step1)-(parseInt(step1/100))+(parseInt(step1/400))+day;
+
     let step6 = step2+monthKey[month];
 
     return dayOfWeekNames [step6%7];
