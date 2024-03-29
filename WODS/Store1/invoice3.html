@@ -19,8 +19,11 @@
                 <th style="text-align: center;" width="54%">Extended Price</th>
             </tr>
 
-            
+
             <script>
+                let params = (new URL(document.location)).searchParams
+
+
                 // Compute sub-total
                 var subtotal = 0;
 
@@ -36,14 +39,21 @@
                     return (returnErrors);
                 };
 
-                function generate_item_rows(products, quantities) {
-                    for (let i = 0; i < products.length && i < quantities.length; i++) {
-                        if (quantities[i] == 0) {
+                function generate_item_rows(products) {
+                    let subtotal =0;
+                    let tax_rate=0;
+                    let shipping=0;
+
+
+                    for (let i = 0; i < products.length ; i++) {
+                        let quantityParams =params.get(`quantity${i}`);
+                        let quantity = quantityParams ? quantityParams : 0
+                        if (quantity == 0) {
                             continue;
                         }
-                        let errors = isNonNegInt(quantities[i], true)
+                        let errors = isNonNegInt(quantity, true)
                         if (errors.length == 0) {
-                            extended_price = quantities[i] * products[i].price;
+                            extended_price = quantity * products[i].price;
                         } else {
                             extended_price = 0;
                         }
@@ -51,7 +61,7 @@
                         document.write(`
                             <tr>
                             <td width="43%">${products[i].brand}</td>
-                            <td align="center" width="11%">${quantities[i]}</td>
+                            <td align="center" width="11%">${quantity}</td>
                             <td width="13%">\$${products[i].price}<div style="color:red;">${errors.join(`<br>`)}</div></td>
                             <td width="54%">\$${extended_price.toFixed(2)}</td>
                             </tr>
@@ -74,12 +84,9 @@
 
                     // Compute grand total
                     total = subtotal + tax + shipping;
-                };
 
-                generate_item_rows(products, quantities);
-            </script>
-<script>
-  document.write(`
+
+document.write(`
   <tr>          
     <td colspan="4" width="100%">&nbsp;</td>        
   </tr>
@@ -102,7 +109,11 @@
   </tr>
 
   `)
-</script>
+                };
+
+                generate_item_rows(products);
+            </script>
+
         </tbody>
     </table>
     <div>

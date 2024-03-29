@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Smart Phone Store</title>
+    <link href="https://fonts.googleapis.com/css?family=Cherry+Swash|Raleway" rel="stylesheet">
+    <link id="xxx" href="products-style.css" rel="stylesheet">
+    <style id="localStyle"></style>
+    <script src="products_data.js"></script>
+    <script>
+        const store_name = "Armando Martinez";
+
+        function submitfrom(){
+            document.getElementById("purchaseForm").submit();
+        }
+    </script>
+</head>
+
+    <header>
+        <h1>
+            <script>
+                document.write(store_name + "'s Used Smart Phone Store")
+            </script>
+        </h1>
+    </header>
+<form id="purchaseForm" action="./invoice3.html" method="get">
+    <div>
+        <main>
+            <script>
+                for (let i=0; i<products.length; i++) {
+                    document.write(`
+                    <section class="item" >
+                        <div class="column">
+                            <img src=${products[i].image}>
+                        </div>
+                        <div>
+                            <h2>${products[i].brand}</h2>
+                            <p>$${products[i].price}</p>
+                            <label for="quantity${i}" id="quantity${i}_label">Quantity</label>
+                            <input type="number,text" id="quantity${i}" name="quantity${i}" min="0" value="0">
+                        </div>
+                    </section>`)
+                }
+            </script>
+        </main>
+    </div>
+
+    <footer>
+        <h1>
+            <script>
+                document.write(`Your One Stop For Used Phones`);
+            </script>
+            <br>
+            <input type="button" value="Purchase" onclick="submitfrom()" style="background-color: black; color: yellow;"></input>
+        </h1>
+    </footer>
+</form>
+</body>
+
+</html>
